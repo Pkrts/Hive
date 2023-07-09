@@ -115,6 +115,11 @@ first go to bash terminal and create a new folder input_data in hadoop and put d
 
 hadoop fs -mkdir /input_data/
 hadoop fs -put depart_data.csv /input_data
+ --->you can check inside input_data it is there.
+ hadoop fs -ls /input_data
+
+Note-whereever the data is crucial(critical) and we don't want to load it everyday we there we use external table. coz here we will not touching our raw data.
+
 
 
 
