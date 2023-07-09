@@ -136,6 +136,61 @@ location '/input_data/';
 describe formatted department_table_external;
 
 ---> you will see table type EXTERNAL_TABLE.
+----> this table is created on top of input_data and it will point towards this only  not in warehouse of hdfs.
+we are not bringing the external table into the system.
+
+#command
+select * from department_table_external;
+
+you will see the data here.
+
+----------------------------------------------------------------------------------------------------------------
+FROM HERE WE WILL DEAL WITH ARRAY TYPE OF DATA
+first we will copy the dumy file array_data.csv to VS CODE of hive.
+#command
+show databases;
+use hive_db;
+#command to create table employee accroding to the array_data.csv file - here we are creating internal table not external (by our wish you can create external table also if you want)
+create table employee
+(emp_id int,
+name string,
+skills array<string>
+)
+row format delimited
+fields terminated by ','
+collection items terminated by ':';
+
+#command to load data into employee from local
+load data local inpath 'file:///config/workspace/array_data.csv' into table employee;
+
+#command select
+select * from employee;
+no column name is there so
+
+#command to show tje coli=umns names also with select command
+set hive.cli.print.header=true;
+now you will able to see the columns name also
+select * from employee;
+
+#query to pick the 0th skill position
+select name,skills[0] as primary_skill 
+from employee;
+
+#query to show Id,name,total_skills and skill hadoop as knows_hadoop and also the skills in sorted as sorted_skills
+select emp_id as ID,name,size(skills) as total_skills,
+array_contains(skills,"HADOOP") as KNOWS_HADOOP,sort_array(skills) as SORTED_SKILLS from employee;
+
+ 
+
+
+
+
+
+
+
+
+
+
 
 
 
