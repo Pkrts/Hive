@@ -180,6 +180,35 @@ from employee;
 select emp_id as ID,name,size(skills) as total_skills,
 array_contains(skills,"HADOOP") as KNOWS_HADOOP,sort_array(skills) as SORTED_SKILLS from employee;
 
+---------------------------------------------------------------------------------------------------------------------------------
+FROM HERE WE WILL DEAL WITH MAP TYPE OR DICTIONARY TYPE OF DATA
+first copy the file map_data.csv from git repo to vscode of hive
+the we will create the table according to the file map_data.csv
+#command
+show databases;
+use hive_db;
+#command to create the table here 
+create table employee_map_data
+(id int,
+name string,
+details map<string,string>
+)
+row format delimited
+fields terminated by ','
+collection items terminated by '|'
+map keys terminated by ':';
+
+#now we will load data into thjs from local
+load data local inpath 'file:///config/workspace/map_data.csv' into table employee_map_data;
+
+#now we will query
+select * from employee_map_data;
+set hive.cli.print.header=true;
+select * from employee_map_data;
+
+#select id,name,details['gender'] as employee_gender from employee_map_data;
+
+#
  
 
 
