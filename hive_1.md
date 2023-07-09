@@ -119,6 +119,25 @@ hadoop fs -put depart_data.csv /input_data
  hadoop fs -ls /input_data
 
 Note-whereever the data is crucial(critical) and we don't want to load it everyday we there we use external table. coz here we will not touching our raw data.
+benefits- it always query the updated value where in internal we have to load the data again.
+here we will create external table 
+#command for external table
+create external table department_table_external
+(dept_id int,
+dept_name string,
+manager_id int,
+salary int
+)
+row format delimited
+fields terminated by ','
+location '/input_data/';
+
+#command
+describe formatted department_table_external;
+
+---> you will see table type EXTERNAL_TABLE.
+
+
 
 
 
