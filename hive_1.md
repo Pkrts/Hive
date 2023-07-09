@@ -208,7 +208,8 @@ select * from employee_map_data;
 
 #select id,name,details['gender'] as employee_gender from employee_map_data;
 
-#
+#select id,name,details,size(details) as map_size,map_keys(details) as map_keys,map_values(details) as map_values
+from employee_map_data;
  
 
 
