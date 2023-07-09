@@ -80,7 +80,7 @@ above one shows the meta data of table so here you will get table not found.
 hadoop fs -ls /user/hive/warehouse/hive_db.db
 
 --------------------------------------------------------------------------------------------------
-from here we go with hdfs path abive was from local path
+from here we go with hdfs path above was from local path
 
 ----> we will create the same table for practical purpose
 #command
@@ -108,6 +108,15 @@ select * from department_data;
 you can verify it from 
 describe formatted department_data;
 yo will see MANAGED_TABLE means internal table.
+
+--------------------------------------------------------------------------------------
+from here we will go with external table so
+first go to bash terminal and create a new folder input_data in hadoop and put depart_data.csv inside thta folder commands are.
+
+hadoop fs -mkdir /input_data/
+hadoop fs -put depart_data.csv /input_data
+
+
 
 
 
