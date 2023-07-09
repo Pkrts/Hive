@@ -95,12 +95,22 @@ fields terminated by ',';
 
 --> loading data from hdfs path so the command is
 #command to laod from hdfs path
-load data inpath '/tmp/depart_data.csv' into department_data;
+load data inpath '/tmp/depart_data.csv' into table department_data;
 
 --->path you can take from go to bash terminal give
 hadoop fs -ls /tmp
 you will path copy this only /tmp/depart_data.csv and paste  in inpath.
 ------------------------------------------------------------------------------------
+#give select command and see the details again you will see.
+select * from department_data;
+
+----> now this is also the internal table coz we directong or giving any reference.(there will be seperate syntax that)
+you can verify it from 
+describe formatted department_data;
+yo will see MANAGED_TABLE means internal table.
+
+
+
 
 
 
